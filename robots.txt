@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://steelblue-mongoose-288604.hostingersite.com/sitemap.xml

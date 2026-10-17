@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="540" height="120" fill="none">
+  <!-- Monogram Frame -->
+  <rect x="10" y="10" width="100" height="100" stroke="#C9A66B" stroke-width="2.5" rx="2" fill="#171717" />
+  <rect x="16" y="16" width="88" height="88" stroke="#C9A66B" stroke-width="1" stroke-opacity="0.4" rx="1" fill="none" />
+  
+  <!-- Stylized Monogram AR -->
+  <text x="60" y="74" text-anchor="middle" font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="46" font-weight="700" fill="#C9A66B" letter-spacing="1">AR</text>
+  
+  <!-- Divider Dot / Detail -->
+  <circle cx="60" cy="90" r="2" fill="#C9A66B" opacity="0.8" />
+  <line x1="38" y1="90" x2="52" y2="90" stroke="#C9A66B" stroke-width="1" opacity="0.6" />
+  <line x1="68" y1="90" x2="82" y2="90" stroke="#C9A66B" stroke-width="1" opacity="0.6" />
+
+  <!-- Typography: Name for light background -->
+  <text x="140" y="55" font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="28" font-weight="700" fill="#171717" letter-spacing="2">ALMEIDA &amp; RIBEIRO</text>
+  
+  <!-- Subtle Gold Divider -->
+  <line x1="142" y1="70" x2="510" y2="70" stroke="#C9A66B" stroke-width="1.2" opacity="0.8" />
+  
+  <!-- Typography: Category -->
+  <text x="142" y="93" font-family="'Montserrat', 'Inter', sans-serif" font-size="14" font-weight="600" fill="#C9A66B" letter-spacing="9">ADVOCACIA</text>
+</svg>

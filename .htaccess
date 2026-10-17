@@ -1,0 +1,109 @@
+# ==============================================================================
+# .htaccess - Almeida & Ribeiro Advocacia
+# Otimizado para Hostinger (Apache / LiteSpeed)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1) REDIRECIONAMENTOS: FORÇAR HTTPS E PADRONIZAR NÃO-WWW (301)
+# ------------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Padronizar www para não-www (301)
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+    # Forçar HTTP para HTTPS (301)
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 2) PÁGINA 404 PERSONALIZADA (Retorno para a home na One-Page)
+# ------------------------------------------------------------------------------
+ErrorDocument 404 /index.html
+
+# ------------------------------------------------------------------------------
+# 3) COMPRESSÃO GZIP / DEFLATE PARA PERFORMANCE
+# ------------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/ld+json
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE application/font-woff
+    AddOutputFilterByType DEFLATE application/font-woff2
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 4) CACHE DE NAVEGADOR & CACHE-BUSTING
+# ------------------------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+
+    # HTML: 0 segundos (atualização imediata, nunca cachear HTML)
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/htm "access plus 0 seconds"
+
+    # CSS e JavaScript: 1 semana
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType text/javascript "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType application/x-javascript "access plus 1 week"
+
+    # Imagens e Mídias: 1 mês
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 month"
+    ExpiresByType image/vnd.microsoft.icon "access plus 1 month"
+
+    # Fontes Web: 1 mês
+    ExpiresByType font/woff "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 month"
+    ExpiresByType application/font-woff "access plus 1 month"
+    ExpiresByType application/font-woff2 "access plus 1 month"
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 5) CABEÇALHOS ESTRITOS DE CACHE-CONTROL (GARANTIA EXTRA DE CACHE-BUSTING)
+# ------------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    # HTML: NUNCA gera cache (max-age=0, no-cache, no-store, must-revalidate)
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+
+    # CSS e JS: 1 semana (604800 segundos)
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+
+    # Imagens e Mídias: 1 mês (2592000 segundos)
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+        Header set Cache-Control "public, max-age=2592000, immutable"
+    </FilesMatch>
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 6) SEGURANÇA BÁSICA E PREVENÇÃO DE LISTAGEM DE DIRETÓRIOS
+# ------------------------------------------------------------------------------
+Options -Indexes

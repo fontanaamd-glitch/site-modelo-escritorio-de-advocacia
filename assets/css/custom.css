@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-gold: #C9A66B;
+  --color-gold-light: #E0C28A;
+  --color-gold-dark: #A68349;
+  --color-dark: #171717;
+  --color-darker: #0E0E0E;
+  --color-bg-light: #F9FAFB;
+  --color-text-main: #111827;
+  --color-text-muted: #4B5563;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+}
+
+/* Ensure sections offset for fixed sticky header */
+section[id], div[id] {
+  scroll-margin-top: 84px;
+}
+
+/* Typography Utility Classes */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Gold Gradient Accents */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #DFBE88 0%, #C9A66B 50%, #A68349 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #C9A66B 0%, #B89255 100%);
+}
+
+.gold-border-glow {
+  border: 1px solid rgba(201, 166, 107, 0.35);
+  box-shadow: 0 4px 20px -2px rgba(201, 166, 107, 0.12);
+}
+
+/* Luxury Divider */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.gold-divider::before,
+.gold-divider::after {
+  content: '';
+  height: 1px;
+  width: 48px;
+  background: linear-gradient(90deg, transparent, #C9A66B);
+}
+
+.gold-divider::after {
+  background: linear-gradient(90deg, #C9A66B, transparent);
+}
+
+/* Card Hover Elevation */
+.law-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.law-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 166, 107, 0.6);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.07), 0 10px 10px -5px rgba(201, 166, 107, 0.05);
+}
+
+/* Subtle background geometric pattern */
+.bg-subtle-pattern {
+  background-color: #F9FAFB;
+  background-image: radial-gradient(rgba(201, 166, 107, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Floating WhatsApp Button Pulse */
+@keyframes whatsapp-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.btn-whatsapp-floating {
+  animation: whatsapp-pulse 2.2s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #171717;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9A66B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #DFBE88;
+}
